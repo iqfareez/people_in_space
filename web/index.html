@@ -1,5 +1,13 @@
+<picture id="splash">
+  <source srcset="splash/img/light-1x.png 1x, splash/img/light-2x.png 2x, splash/img/light-3x.png 3x"
+    media="(prefers-color-scheme: light) or (prefers-color-scheme: no-preference)">
+  <source srcset="splash/img/dark-1x.png 1x, splash/img/dark-2x.png 2x, splash/img/dark-3x.png 3x"
+    media="(prefers-color-scheme: dark)">
+  <img class="center" src="splash/img/light-1x.png" />
+</picture>
 <!DOCTYPE html>
 <html>
+
 <head>
   <!--
     If you are serving your web app in a path other than the root, change the
@@ -23,10 +31,21 @@
   <meta name="apple-mobile-web-app-title" content="people_in_space">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
-  <title>people_in_space</title>
+  <title>People in Space</title>
   <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" type="text/css" href="splash/style.css">
 </head>
+
 <body>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="/__/firebase/8.6.8/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="/__/firebase/8.6.8/firebase-analytics.js"></script>
+
+  <!-- Initialize Firebase -->
+  <script src="/__/firebase/init.js"></script>
   <!-- This script installs service_worker.js to provide PWA functionality to
        application. For more information, see:
        https://developers.google.com/web/fundamentals/primers/service-workers -->
@@ -95,4 +114,5 @@
     }
   </script>
 </body>
+
 </html>
