@@ -10,7 +10,7 @@ http://api.open-notify.org/astros.json
 
 ### Android
 
-Download apk from [Releases](https://github.com/iqfareez/people_in_space/releases) page
+Download apk from [Releases](https://github.com/iqfareez/people_in_space/releases) page.
 
 ### Web
 

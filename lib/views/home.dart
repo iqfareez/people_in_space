@@ -1,9 +1,10 @@
 import 'dart:ui';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:people_in_space/Networking/astros_model.dart';
 import 'package:people_in_space/Networking/bing_search_model.dart';
 import 'package:people_in_space/Networking/fetch_data.dart';
-import 'package:url_launcher/link.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -11,13 +12,13 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  late Future<BingImageResponse> _imageFuture;
+  // late Future<BingImageResponse> _imageFuture;
   late Future<AstrosModel> _astrosFuture;
   late AstrosModel _astrosList;
   @override
   void initState() {
     super.initState();
-    _imageFuture = FetchData.getAstrosImage();
+    // _imageFuture = FetchData.getAstrosImage();
     _astrosFuture = FetchData.getAstros();
   }
 
@@ -86,48 +87,141 @@ class _HomeState extends State<Home> {
                   builder: (context, AsyncSnapshot<AstrosModel> snapshot) {
                     if (snapshot.hasData) {
                       return GridView.count(
+                        physics: NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
                         crossAxisCount: crossAxisCount(),
                         children: snapshot.data!.people!
                             .map((e) => Card(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      ListTile(
-                                        title: Text(e.name.toString()),
-                                        subtitle: Text.rich(
-                                          TextSpan(
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 4.0),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        StatefulBuilder(
+                                            builder: (context, setWidgetState) {
+                                          return FutureBuilder(
+                                              future: FetchData.getAstrosImage(
+                                                  e.name!),
+                                              builder: (context,
+                                                  AsyncSnapshot<
+                                                          BingImageResponse>
+                                                      snapshot) {
+                                                if (snapshot.hasData) {
+                                                  return TextButton(
+                                                    onPressed: () {
+                                                      showDialog(
+                                                          context: context,
+                                                          builder: (builder) =>
+                                                              Dialog(
+                                                                child: Image.network(
+                                                                    snapshot
+                                                                        .data!
+                                                                        .value!
+                                                                        .first!
+                                                                        .thumbnailUrl!),
+                                                              ));
+                                                    },
+                                                    child: ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              16),
+                                                      child: Image.network(
+                                                        snapshot
+                                                            .data!
+                                                            .value!
+                                                            .first!
+                                                            .thumbnailUrl!,
+                                                        fit: BoxFit.cover,
+                                                        height: 80,
+                                                        width: 90,
+                                                      ),
+                                                    ),
+                                                  );
+                                                } else if (snapshot
+                                                        .connectionState ==
+                                                    ConnectionState.waiting) {
+                                                  return const LinearProgressIndicator();
+                                                } else {
+                                                  return TextButton(
+                                                      onPressed: () {
+                                                        setWidgetState(() {});
+                                                      },
+                                                      child: Container(
+                                                        height: 80,
+                                                        width: 90,
+                                                        decoration: BoxDecoration(
+                                                            color: Colors
+                                                                .grey.shade100,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        16)),
+                                                        child: Center(
+                                                          child: Icon(
+                                                            Icons
+                                                                .image_not_supported_rounded,
+                                                            color:
+                                                                Colors.black54,
+                                                          ),
+                                                        ),
+                                                      ));
+                                                }
+                                              });
+                                        }),
+                                        Spacer(),
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 6.0),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
                                             children: [
-                                              TextSpan(text: 'craft: '),
-                                              TextSpan(
-                                                text: e.craft,
+                                              Text(
+                                                e.name.toString(),
                                                 style: TextStyle(
-                                                    color: Colors.black,
+                                                    fontSize: 18,
                                                     fontWeight:
                                                         FontWeight.bold),
-                                              )
+                                              ),
+                                              SizedBox(height: 2),
+                                              Text.rich(
+                                                TextSpan(
+                                                  children: [
+                                                    TextSpan(
+                                                        text: 'Craft: ',
+                                                        style: TextStyle(
+                                                            color: Colors
+                                                                .black38)),
+                                                    TextSpan(
+                                                      text: e.craft,
+                                                      style: TextStyle(
+                                                          color: Colors.black45,
+                                                          fontWeight:
+                                                              FontWeight.w600),
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
                                             ],
                                           ),
                                         ),
-                                      ),
-                                      Spacer(),
-                                      Padding(
-                                        padding: const EdgeInsets.all(16.0),
-                                        child: Link(
-                                          uri: Uri.https('www.google.com',
-                                              'search', {'q': 'maple kacak'}),
-                                          target: LinkTarget.defaultTarget,
-                                          builder: (ctx, openLink) {
-                                            return TextButton(
-                                              onPressed: openLink,
-                                              child:
-                                                  Text('Find more on web...'),
-                                            );
-                                          },
+                                        Spacer(
+                                          flex: 2,
                                         ),
-                                      )
-                                    ],
+                                        TextButton(
+                                          onPressed: () {
+                                            launch(Uri.https(
+                                                'www.google.com',
+                                                'search',
+                                                {'q': e.name}).toString());
+                                          },
+                                          child: Text('Find out more...'),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ))
                             .toList(),
@@ -139,7 +233,14 @@ class _HomeState extends State<Home> {
                     }
                   },
                 ),
-              )
+              ),
+              Padding(
+                padding: EdgeInsets.all(12),
+                child: Icon(
+                  CupertinoIcons.rocket,
+                  color: Colors.black54,
+                ),
+              ),
             ],
           ),
         ),

@@ -1,9 +1,8 @@
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
 import 'package:people_in_space/Networking/astros_model.dart';
 import 'package:people_in_space/Networking/bing_search_model.dart';
-// import 'package:people_in_space/SECRETS.dart';
+import 'package:people_in_space/SECRETS.dart';
 
 class FetchData {
   static Future<AstrosModel> getAstros() async {
@@ -17,15 +16,14 @@ class FetchData {
     }
   }
 
-  static Future<BingImageResponse> getAstrosImage() async {
+  static Future<BingImageResponse> getAstrosImage(String name) async {
     final response = await http.get(
       Uri.https(
         'api.bing.microsoft.com',
         '/v7.0/images/search',
-        {'q': 'meow', 'count': '5'},
+        {'q': name, 'count': '1'},
       ),
-      //TODO: Add key
-      // headers: {'Ocp-Apim-Subscription-Key': key1},
+      headers: {'Ocp-Apim-Subscription-Key': key1},
     );
 
     if (response.statusCode == 200) {

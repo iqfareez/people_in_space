@@ -2,7 +2,7 @@
     package="com.iqfareez.people_in_space">
     <uses-permission android:name="android.permission.INTERNET" /> 
    <application
-        android:label="people_in_space"
+        android:label="People in Space"
         android:icon="@mipmap/ic_launcher"
         android:usesCleartextTraffic="true">
         <activity
