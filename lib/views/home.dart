@@ -7,6 +7,8 @@ import 'package:people_in_space/Networking/fetch_data.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Home extends StatefulWidget {
+  const Home({Key? key}) : super(key: key);
+
   @override
   _HomeState createState() => _HomeState();
 }
@@ -50,7 +52,7 @@ class _HomeState extends State<Home> {
                   child: Container(
                     height: 150,
                     width: double.infinity,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       image: DecorationImage(
                         fit: BoxFit.cover,
                         image: AssetImage('assets/pexels-spacex-23793.jpg'),
@@ -68,11 +70,12 @@ class _HomeState extends State<Home> {
                               print('_astrosList is $_astrosList');
                               return Text(
                                 '${snapshot.data!.number} peoples in space',
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: Colors.white, fontSize: 28),
                               );
-                            } else
-                              return CircularProgressIndicator();
+                            } else {
+                              return const CircularProgressIndicator();
+                            }
                           },
                         ),
                       ),
@@ -87,7 +90,7 @@ class _HomeState extends State<Home> {
                   builder: (context, AsyncSnapshot<AstrosModel> snapshot) {
                     if (snapshot.hasData) {
                       return GridView.count(
-                        physics: NeverScrollableScrollPhysics(),
+                        physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
                         crossAxisCount: crossAxisCount(),
                         children: snapshot.data!.people!
@@ -158,7 +161,7 @@ class _HomeState extends State<Home> {
                                                                 BorderRadius
                                                                     .circular(
                                                                         16)),
-                                                        child: Center(
+                                                        child: const Center(
                                                           child: Icon(
                                                             Icons
                                                                 .image_not_supported_rounded,
@@ -170,7 +173,7 @@ class _HomeState extends State<Home> {
                                                 }
                                               });
                                         }),
-                                        Spacer(),
+                                        const Spacer(),
                                         Padding(
                                           padding: const EdgeInsets.symmetric(
                                               horizontal: 6.0),
@@ -181,23 +184,23 @@ class _HomeState extends State<Home> {
                                             children: [
                                               Text(
                                                 e.name.toString(),
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                     fontSize: 18,
                                                     fontWeight:
                                                         FontWeight.bold),
                                               ),
-                                              SizedBox(height: 2),
+                                              const SizedBox(height: 2),
                                               Text.rich(
                                                 TextSpan(
                                                   children: [
-                                                    TextSpan(
+                                                    const TextSpan(
                                                         text: 'Craft: ',
                                                         style: TextStyle(
                                                             color: Colors
                                                                 .black38)),
                                                     TextSpan(
                                                       text: e.craft,
-                                                      style: TextStyle(
+                                                      style: const TextStyle(
                                                           color: Colors.black45,
                                                           fontWeight:
                                                               FontWeight.w600),
@@ -208,9 +211,7 @@ class _HomeState extends State<Home> {
                                             ],
                                           ),
                                         ),
-                                        Spacer(
-                                          flex: 2,
-                                        ),
+                                        const Spacer(flex: 2),
                                         TextButton(
                                           onPressed: () {
                                             launch(Uri.https(
@@ -218,7 +219,7 @@ class _HomeState extends State<Home> {
                                                 'search',
                                                 {'q': e.name}).toString());
                                           },
-                                          child: Text('Find out more...'),
+                                          child: const Text('Find out more...'),
                                         ),
                                       ],
                                     ),
@@ -227,14 +228,14 @@ class _HomeState extends State<Home> {
                             .toList(),
                       );
                     } else {
-                      return Center(
+                      return const Center(
                         child: SingleChildScrollView(),
                       );
                     }
                   },
                 ),
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.all(12),
                 child: Icon(
                   CupertinoIcons.rocket,

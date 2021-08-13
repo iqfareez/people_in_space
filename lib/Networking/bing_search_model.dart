@@ -58,29 +58,29 @@ class BingImageResponse {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['_type'] = this.sType;
-    if (this.instrumentation != null) {
-      data['instrumentation'] = this.instrumentation!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['_type'] = sType;
+    if (instrumentation != null) {
+      data['instrumentation'] = instrumentation!.toJson();
     }
-    data['readLink'] = this.readLink;
-    data['webSearchUrl'] = this.webSearchUrl;
-    if (this.queryContext != null) {
-      data['queryContext'] = this.queryContext!.toJson();
+    data['readLink'] = readLink;
+    data['webSearchUrl'] = webSearchUrl;
+    if (queryContext != null) {
+      data['queryContext'] = queryContext!.toJson();
     }
-    data['totalEstimatedMatches'] = this.totalEstimatedMatches;
-    data['nextOffset'] = this.nextOffset;
-    data['currentOffset'] = this.currentOffset;
-    if (this.value != null) {
-      data['value'] = this.value!.map((v) => v!.toJson()).toList();
+    data['totalEstimatedMatches'] = totalEstimatedMatches;
+    data['nextOffset'] = nextOffset;
+    data['currentOffset'] = currentOffset;
+    if (value != null) {
+      data['value'] = value!.map((v) => v!.toJson()).toList();
     }
-    if (this.pivotSuggestions != null) {
+    if (pivotSuggestions != null) {
       data['pivotSuggestions'] =
-          this.pivotSuggestions!.map((v) => v!.toJson()).toList();
+          pivotSuggestions!.map((v) => v!.toJson()).toList();
     }
-    if (this.relatedSearches != null) {
+    if (relatedSearches != null) {
       data['relatedSearches'] =
-          this.relatedSearches!.map((v) => v!.toJson()).toList();
+          relatedSearches!.map((v) => v!.toJson()).toList();
     }
     return data;
   }
@@ -96,8 +96,8 @@ class Instrumentation {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['_type'] = this.sType;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['_type'] = sType;
     return data;
   }
 }
@@ -125,12 +125,12 @@ class QueryContext {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['originalQuery'] = this.originalQuery;
-    data['alterationDisplayQuery'] = this.alterationDisplayQuery;
-    data['alterationOverrideQuery'] = this.alterationOverrideQuery;
-    data['alterationMethod'] = this.alterationMethod;
-    data['alterationType'] = this.alterationType;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['originalQuery'] = originalQuery;
+    data['alterationDisplayQuery'] = alterationDisplayQuery;
+    data['alterationOverrideQuery'] = alterationOverrideQuery;
+    data['alterationMethod'] = alterationMethod;
+    data['alterationType'] = alterationType;
     return data;
   }
 }
@@ -210,32 +210,32 @@ class Value {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['webSearchUrl'] = this.webSearchUrl;
-    data['name'] = this.name;
-    data['thumbnailUrl'] = this.thumbnailUrl;
-    data['datePublished'] = this.datePublished;
-    data['isFamilyFriendly'] = this.isFamilyFriendly;
-    data['creativeCommons'] = this.creativeCommons;
-    data['contentUrl'] = this.contentUrl;
-    data['hostPageUrl'] = this.hostPageUrl;
-    data['contentSize'] = this.contentSize;
-    data['encodingFormat'] = this.encodingFormat;
-    data['hostPageDisplayUrl'] = this.hostPageDisplayUrl;
-    data['width'] = this.width;
-    data['height'] = this.height;
-    data['hostPageFavIconUrl'] = this.hostPageFavIconUrl;
-    data['hostPageDomainFriendlyName'] = this.hostPageDomainFriendlyName;
-    data['hostPageDiscoveredDate'] = this.hostPageDiscoveredDate;
-    if (this.thumbnail != null) {
-      data['thumbnail'] = this.thumbnail!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['webSearchUrl'] = webSearchUrl;
+    data['name'] = name;
+    data['thumbnailUrl'] = thumbnailUrl;
+    data['datePublished'] = datePublished;
+    data['isFamilyFriendly'] = isFamilyFriendly;
+    data['creativeCommons'] = creativeCommons;
+    data['contentUrl'] = contentUrl;
+    data['hostPageUrl'] = hostPageUrl;
+    data['contentSize'] = contentSize;
+    data['encodingFormat'] = encodingFormat;
+    data['hostPageDisplayUrl'] = hostPageDisplayUrl;
+    data['width'] = width;
+    data['height'] = height;
+    data['hostPageFavIconUrl'] = hostPageFavIconUrl;
+    data['hostPageDomainFriendlyName'] = hostPageDomainFriendlyName;
+    data['hostPageDiscoveredDate'] = hostPageDiscoveredDate;
+    if (thumbnail != null) {
+      data['thumbnail'] = thumbnail!.toJson();
     }
-    data['imageInsightsToken'] = this.imageInsightsToken;
-    if (this.insightsMetadata != null) {
-      data['insightsMetadata'] = this.insightsMetadata!.toJson();
+    data['imageInsightsToken'] = imageInsightsToken;
+    if (insightsMetadata != null) {
+      data['insightsMetadata'] = insightsMetadata!.toJson();
     }
-    data['imageId'] = this.imageId;
-    data['accentColor'] = this.accentColor;
+    data['imageId'] = imageId;
+    data['accentColor'] = accentColor;
     return data;
   }
 }
@@ -252,9 +252,9 @@ class Thumbnail {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['width'] = this.width;
-    data['height'] = this.height;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['width'] = width;
+    data['height'] = height;
     return data;
   }
 }
@@ -281,12 +281,12 @@ class InsightsMetadata {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['recipeSourcesCount'] = this.recipeSourcesCount;
-    data['pagesIncludingCount'] = this.pagesIncludingCount;
-    data['availableSizesCount'] = this.availableSizesCount;
-    if (this.videoObject != null) {
-      data['videoObject'] = this.videoObject!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['recipeSourcesCount'] = recipeSourcesCount;
+    data['pagesIncludingCount'] = pagesIncludingCount;
+    data['availableSizesCount'] = availableSizesCount;
+    if (videoObject != null) {
+      data['videoObject'] = videoObject!.toJson();
     }
     return data;
   }
@@ -319,15 +319,15 @@ class VideoObject {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    if (this.creator != null) {
-      data['creator'] = this.creator!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (creator != null) {
+      data['creator'] = creator!.toJson();
     }
-    data['duration'] = this.duration;
-    data['embedHtml'] = this.embedHtml;
-    data['allowHttpsEmbed'] = this.allowHttpsEmbed;
-    data['videoId'] = this.videoId;
-    data['allowMobileEmbed'] = this.allowMobileEmbed;
+    data['duration'] = duration;
+    data['embedHtml'] = embedHtml;
+    data['allowHttpsEmbed'] = allowHttpsEmbed;
+    data['videoId'] = videoId;
+    data['allowMobileEmbed'] = allowMobileEmbed;
     return data;
   }
 }
@@ -342,8 +342,8 @@ class Creator {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['name'] = this.name;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['name'] = name;
     return data;
   }
 }
@@ -365,10 +365,10 @@ class PivotSuggestions {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['pivot'] = this.pivot;
-    if (this.suggestions != null) {
-      data['suggestions'] = this.suggestions!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['pivot'] = pivot;
+    if (suggestions != null) {
+      data['suggestions'] = suggestions!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -399,13 +399,13 @@ class RelatedSearches {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['text'] = this.text;
-    data['displayText'] = this.displayText;
-    data['webSearchUrl'] = this.webSearchUrl;
-    data['searchLink'] = this.searchLink;
-    if (this.thumbnail != null) {
-      data['thumbnail'] = this.thumbnail!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['text'] = text;
+    data['displayText'] = displayText;
+    data['webSearchUrl'] = webSearchUrl;
+    data['searchLink'] = searchLink;
+    if (thumbnail != null) {
+      data['thumbnail'] = thumbnail!.toJson();
     }
     return data;
   }
@@ -421,8 +421,8 @@ class ThumbnailUrl {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['thumbnailUrl'] = this.thumbnailUrl;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['thumbnailUrl'] = thumbnailUrl;
     return data;
   }
 }

@@ -11,17 +11,17 @@ class AstrosModel {
     if (json['people'] != null) {
       people = <People>[];
       json['people'].forEach((v) {
-        people!.add(new People.fromJson(v));
+        people!.add(People.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['number'] = this.number;
-    data['message'] = this.message;
-    if (this.people != null) {
-      data['people'] = this.people!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['number'] = number;
+    data['message'] = message;
+    if (people != null) {
+      data['people'] = people!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -39,9 +39,9 @@ class People {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    data['craft'] = this.craft;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['name'] = name;
+    data['craft'] = craft;
     return data;
   }
 }
