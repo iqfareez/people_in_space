@@ -69,7 +69,7 @@ class _HomeState extends State<Home> {
                               _astrosList = snapshot.data!;
                               print('_astrosList is $_astrosList');
                               return Text(
-                                '${snapshot.data!.number} peoples in space',
+                                '${snapshot.data!.number} people in space',
                                 style: const TextStyle(
                                     color: Colors.white, fontSize: 28),
                               );
@@ -147,29 +147,33 @@ class _HomeState extends State<Home> {
                                                     ConnectionState.waiting) {
                                                   return const LinearProgressIndicator();
                                                 } else {
-                                                  return TextButton(
-                                                      onPressed: () {
-                                                        setWidgetState(() {});
-                                                      },
-                                                      child: Container(
-                                                        height: 80,
-                                                        width: 90,
-                                                        decoration: BoxDecoration(
-                                                            color: Colors
-                                                                .grey.shade100,
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        16)),
-                                                        child: const Center(
-                                                          child: Icon(
-                                                            Icons
-                                                                .image_not_supported_rounded,
-                                                            color:
-                                                                Colors.black54,
-                                                          ),
+                                                  return GestureDetector(
+                                                    onTap: () {
+                                                      setWidgetState(() {});
+                                                    },
+                                                    child: Container(
+                                                      height: 80,
+                                                      width: 90,
+                                                      decoration: BoxDecoration(
+                                                        color: Colors
+                                                            .grey.shade100,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(16),
+                                                      ),
+                                                      child: Center(
+                                                        child: Text(
+                                                          'Tap to reload image',
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          style:
+                                                              Theme.of(context)
+                                                                  .textTheme
+                                                                  .caption,
                                                         ),
-                                                      ));
+                                                      ),
+                                                    ),
+                                                  );
                                                 }
                                               });
                                         }),
