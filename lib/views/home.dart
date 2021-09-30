@@ -1,10 +1,10 @@
 import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:people_in_space/Networking/astros_model.dart';
-import 'package:people_in_space/Networking/bing_search_model.dart';
-import 'package:people_in_space/Networking/fetch_data.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../Networking/astros_model.dart';
+import '../Networking/bing_search_model.dart';
+import '../Networking/fetch_data.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -89,10 +89,12 @@ class _HomeState extends State<Home> {
                   future: _astrosFuture,
                   builder: (context, AsyncSnapshot<AstrosModel> snapshot) {
                     if (snapshot.hasData) {
-                      return GridView.count(
+                      return GridView.extent(
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
-                        crossAxisCount: crossAxisCount(),
+                        // crossAxisCount: crossAxisCount(),
+                        childAspectRatio: 4 / 5,
+                        maxCrossAxisExtent: 300,
                         children: snapshot.data!.people!
                             .map((e) => Card(
                                   child: Padding(
@@ -152,6 +154,7 @@ class _HomeState extends State<Home> {
                                                       setWidgetState(() {});
                                                     },
                                                     child: Container(
+                                                      margin: EdgeInsets.all(4),
                                                       height: 80,
                                                       width: 90,
                                                       decoration: BoxDecoration(
