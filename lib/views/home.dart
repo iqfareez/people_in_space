@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../Networking/astros_model.dart';
-import '../Networking/bing_search_model.dart';
 import '../Networking/fetch_data.dart';
 
 class Home extends StatefulWidget {
@@ -16,7 +15,6 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   // late Future<BingImageResponse> _imageFuture;
   late Future<AstrosModel> _astrosFuture;
-  late AstrosModel _astrosList;
   @override
   void initState() {
     super.initState();
@@ -66,8 +64,6 @@ class _HomeState extends State<Home> {
                           builder:
                               (context, AsyncSnapshot<AstrosModel> snapshot) {
                             if (snapshot.hasData) {
-                              _astrosList = snapshot.data!;
-                              print('_astrosList is $_astrosList');
                               return Text(
                                 '${snapshot.data!.number} people in space',
                                 style: const TextStyle(
@@ -104,82 +100,25 @@ class _HomeState extends State<Home> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        StatefulBuilder(
-                                            builder: (context, setWidgetState) {
-                                          return FutureBuilder(
-                                              future: FetchData.getAstrosImage(
-                                                  e.name!),
-                                              builder: (context,
-                                                  AsyncSnapshot<
-                                                          BingImageResponse>
-                                                      snapshot) {
-                                                if (snapshot.hasData) {
-                                                  return TextButton(
-                                                    onPressed: () {
-                                                      showDialog(
-                                                          context: context,
-                                                          builder: (builder) =>
-                                                              Dialog(
-                                                                child: Image.network(
-                                                                    snapshot
-                                                                        .data!
-                                                                        .value!
-                                                                        .first!
-                                                                        .thumbnailUrl!),
-                                                              ));
-                                                    },
-                                                    child: ClipRRect(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              16),
-                                                      child: Image.network(
-                                                        snapshot
-                                                            .data!
-                                                            .value!
-                                                            .first!
-                                                            .thumbnailUrl!,
-                                                        fit: BoxFit.cover,
-                                                        height: 80,
-                                                        width: 90,
-                                                      ),
-                                                    ),
-                                                  );
-                                                } else if (snapshot
-                                                        .connectionState ==
-                                                    ConnectionState.waiting) {
-                                                  return const LinearProgressIndicator();
-                                                } else {
-                                                  return GestureDetector(
-                                                    onTap: () {
-                                                      setWidgetState(() {});
-                                                    },
-                                                    child: Container(
-                                                      margin: EdgeInsets.all(4),
-                                                      height: 80,
-                                                      width: 90,
-                                                      decoration: BoxDecoration(
-                                                        color: Colors
-                                                            .grey.shade100,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(16),
-                                                      ),
-                                                      child: Center(
-                                                        child: Text(
-                                                          'Tap to reload image',
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          style:
-                                                              Theme.of(context)
-                                                                  .textTheme
-                                                                  .caption,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  );
-                                                }
-                                              });
-                                        }),
+                                        TextButton(
+                                          onPressed: () => showDialog(
+                                            context: context,
+                                            builder: (builder) => Dialog(
+                                              child: Image.network(
+                                                  e.thumbnailUrl!),
+                                            ),
+                                          ),
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(16),
+                                            child: Image.network(
+                                              e.thumbnailUrl!,
+                                              fit: BoxFit.cover,
+                                              height: 80,
+                                              width: 90,
+                                            ),
+                                          ),
+                                        ),
                                         const Spacer(),
                                         Padding(
                                           padding: const EdgeInsets.symmetric(

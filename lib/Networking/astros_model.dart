@@ -1,28 +1,25 @@
 class AstrosModel {
+  List<People>? people;
   int? number;
   String? message;
-  List<People>? people;
 
-  AstrosModel({this.number, this.message, this.people});
+  AstrosModel({this.people, this.number, this.message});
 
   AstrosModel.fromJson(Map<String, dynamic> json) {
-    number = json['number'];
-    message = json['message'];
-    if (json['people'] != null) {
-      people = <People>[];
-      json['people'].forEach((v) {
-        people!.add(People.fromJson(v));
-      });
-    }
+    people = json["people"] == null
+        ? null
+        : (json["people"] as List).map((e) => People.fromJson(e)).toList();
+    number = json["number"];
+    message = json["message"];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['number'] = number;
-    data['message'] = message;
-    if (people != null) {
-      data['people'] = people!.map((v) => v.toJson()).toList();
-    }
+    if (people != null)
+      // ignore: curly_braces_in_flow_control_structures
+      data["people"] = people?.map((e) => e.toJson()).toList();
+    data["number"] = number;
+    data["message"] = message;
     return data;
   }
 }
@@ -30,18 +27,24 @@ class AstrosModel {
 class People {
   String? name;
   String? craft;
+  String? thumbnailUrl;
+  String? contentUrl;
 
-  People({this.name, this.craft});
+  People({this.name, this.craft, this.thumbnailUrl, this.contentUrl});
 
   People.fromJson(Map<String, dynamic> json) {
-    name = json['name'];
-    craft = json['craft'];
+    name = json["name"];
+    craft = json["craft"];
+    thumbnailUrl = json["thumbnailUrl"];
+    contentUrl = json["contentUrl"];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['name'] = name;
-    data['craft'] = craft;
+    data["name"] = name;
+    data["craft"] = craft;
+    data["thumbnailUrl"] = thumbnailUrl;
+    data["contentUrl"] = contentUrl;
     return data;
   }
 }
