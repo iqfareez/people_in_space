@@ -2,10 +2,9 @@
 
 Just for fun project :smile:
 
-## API(s)
+## API
 
-http://api.open-notify.org/astros.json
-https://api.bing.microsoft.com/images/v7.0/images/search
+https://astros-api.herokuapp.com/data (Combination of OpenNotify API and Bing Image Search API)
 
 ## Releases
 
@@ -17,7 +16,7 @@ Download apk from [Releases](https://github.com/iqfareez/people_in_space/release
 
 ### Web
 
-Can't host due to some API is served via unsecure `http` :")
+https://iqfareez.github.io/people_in_space
 
 <!-- https://www.howmanypeopleareinspacerightnow.com/peopleinspace.json -->
 

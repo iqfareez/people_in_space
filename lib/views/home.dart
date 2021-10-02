@@ -18,7 +18,6 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
-    // _imageFuture = FetchData.getAstrosImage();
     _astrosFuture = FetchData.getAstros();
   }
 
@@ -89,88 +88,10 @@ class _HomeState extends State<Home> {
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
                         // crossAxisCount: crossAxisCount(),
-                        childAspectRatio: 4 / 5,
+                        childAspectRatio: 4 / 6,
                         maxCrossAxisExtent: 300,
                         children: snapshot.data!.people!
-                            .map((e) => Card(
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 4.0),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        TextButton(
-                                          onPressed: () => showDialog(
-                                            context: context,
-                                            builder: (builder) => Dialog(
-                                              child: Image.network(
-                                                  e.thumbnailUrl!),
-                                            ),
-                                          ),
-                                          child: ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(16),
-                                            child: Image.network(
-                                              e.thumbnailUrl!,
-                                              fit: BoxFit.cover,
-                                              height: 80,
-                                              width: 90,
-                                            ),
-                                          ),
-                                        ),
-                                        const Spacer(),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 6.0),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.min,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                e.name.toString(),
-                                                style: const TextStyle(
-                                                    fontSize: 18,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                              const SizedBox(height: 2),
-                                              Text.rich(
-                                                TextSpan(
-                                                  children: [
-                                                    const TextSpan(
-                                                        text: 'Craft: ',
-                                                        style: TextStyle(
-                                                            color: Colors
-                                                                .black38)),
-                                                    TextSpan(
-                                                      text: e.craft,
-                                                      style: const TextStyle(
-                                                          color: Colors.black45,
-                                                          fontWeight:
-                                                              FontWeight.w600),
-                                                    )
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        const Spacer(flex: 2),
-                                        TextButton(
-                                          onPressed: () {
-                                            launch(Uri.https(
-                                                'www.google.com',
-                                                'search',
-                                                {'q': e.name}).toString());
-                                          },
-                                          child: const Text('Find out more...'),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ))
+                            .map((e) => AstrosCard(people: e))
                             .toList(),
                       );
                     } else {
@@ -183,13 +104,110 @@ class _HomeState extends State<Home> {
               ),
               const Padding(
                 padding: EdgeInsets.all(12),
-                child: Icon(
-                  CupertinoIcons.rocket,
-                  color: Colors.black54,
+                child: Opacity(
+                  opacity: 0.65,
+                  child: Icon(
+                    CupertinoIcons.rocket,
+                  ),
                 ),
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class AstrosCard extends StatelessWidget {
+  const AstrosCard({Key? key, required this.people}) : super(key: key);
+
+  final People people;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(4.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              flex: 2,
+              child: Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: GestureDetector(
+                  onTap: () => showDialog(
+                    context: context,
+                    builder: (builder) => Dialog(
+                      child: Image.network(people.thumbnailUrl!, loadingBuilder:
+                          (BuildContext context, Widget child,
+                              ImageChunkEvent? loadingProgress) {
+                        if (loadingProgress == null) {
+                          return child;
+                        }
+                        return Center(
+                          child: CircularProgressIndicator(
+                            value: loadingProgress.expectedTotalBytes != null
+                                ? loadingProgress.cumulativeBytesLoaded /
+                                    loadingProgress.expectedTotalBytes!
+                                : null,
+                          ),
+                        );
+                      }),
+                    ),
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(16),
+                    child: Image.network(
+                      people.thumbnailUrl!,
+                      fit: BoxFit.cover,
+                      // height: 120,
+                      // width: 110,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 6.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      people.name.toString(),
+                      style: const TextStyle(
+                          fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 2),
+                    Text.rich(
+                      TextSpan(
+                        children: [
+                          const TextSpan(
+                            text: 'Craft: ',
+                            style: TextStyle(fontWeight: FontWeight.w200),
+                          ),
+                          TextSpan(
+                            text: people.craft,
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                launch(Uri.https('www.google.com', 'search', {'q': people.name})
+                    .toString());
+              },
+              child: const Text('Find out more...'),
+            ),
+          ],
         ),
       ),
     );
