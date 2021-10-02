@@ -1,3 +1,5 @@
+[![Flutter Web](https://github.com/iqfareez/people_in_space/actions/workflows/flutter_web.yml/badge.svg)](https://github.com/iqfareez/people_in_space/actions/workflows/flutter_web.yml)
+
 # People in Space
 
 Just for fun project :smile:
