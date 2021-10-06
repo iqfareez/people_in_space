@@ -6,7 +6,7 @@ Just for fun project :smile:
 
 ## API
 
-https://astros-api.herokuapp.com/data (Combination of OpenNotify API and Bing Image Search API)
+https://astros-api.herokuapp.com (Combination of OpenNotify API and Bing Image Search API)
 
 ## Releases
 
