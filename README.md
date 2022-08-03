@@ -6,7 +6,7 @@ Just for fun project :smile:
 
 ## API
 
-https://astros-api.herokuapp.com (Combination of OpenNotify API and Bing Image Search API)
+https://astros-api.herokuapp.com (Combination of **OpenNotify API** and **Bing Image Search API**). Learn more on its [repository](https://github.com/iqfareez/astros-api).
 
 ## Releases
 
@@ -21,13 +21,3 @@ Download apk from [Releases](https://github.com/iqfareez/people_in_space/release
 https://iqfareez.github.io/people_in_space
 
 <!-- https://www.howmanypeopleareinspacerightnow.com/peopleinspace.json -->
-
-## Dependencies
-
-[cupertino_icons](https://pub.dev/packages/cupertino_icons)
-
-[http](https://pub.dev/packages/http)
-
-[google_fonts](https://pub.dev/packages/google_fonts)
-
-[url_launcher](https://pub.dev/packages/url_launcher)
