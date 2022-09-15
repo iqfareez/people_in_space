@@ -11,12 +11,21 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Flutter action
-        uses: subosito/flutter-action@v1.5.3
+        id: flutter-action
+        uses: subosito/flutter-action@v2.7.0
         with:
           channel: "stable"
-      - run: flutter --version
-      - run: flutter pub get
-      - run: flutter build web
+
+      - name: Flutter info
+        run: |
+          echo channel=${{ steps.flutter-action.outputs.channel }} >> $GITHUB_STEP_SUMMARY
+          echo version=${{ steps.flutter-action.outputs.version }} >> $GITHUB_STEP_SUMMARY
+          echo architecture=${{ steps.flutter-action.outputs.architecture }} >> $GITHUB_STEP_SUMMARY
+
+      - name: Build for Web
+        run: |
+          flutter pub get
+          flutter build web
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
