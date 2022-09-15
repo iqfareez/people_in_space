@@ -7,7 +7,7 @@ import 'astros_model.dart';
 class FetchData {
   static Future<AstrosModel> getAstros() async {
     final response =
-        await http.get(Uri.parse('https://astros-api.herokuapp.com/data'));
+        await http.get(Uri.parse('https://astros.up.railway.app/data'));
     if (response.statusCode == 200) {
       return AstrosModel.fromJson(jsonDecode(response.body));
     } else {
