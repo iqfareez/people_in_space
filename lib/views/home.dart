@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import '../Networking/astros_model.dart';
 import '../Networking/fetch_data.dart';
 import 'astros_card.dart';
+import 'my_about_dialog.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -54,7 +55,8 @@ class _HomeState extends State<Home> {
                     decoration: const BoxDecoration(
                       image: DecorationImage(
                         fit: BoxFit.cover,
-                        image: AssetImage('assets/pexels-spacex-23793.jpg'),
+                        image: AssetImage(
+                            'assets/tartila-freepik-space-pattern.jpg'),
                       ),
                     ),
                     child: BackdropFilter(
@@ -104,12 +106,18 @@ class _HomeState extends State<Home> {
                   },
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.all(12),
+              Padding(
+                padding: const EdgeInsets.all(12),
                 child: Opacity(
                   opacity: 0.65,
-                  child: Icon(
-                    CupertinoIcons.rocket,
+                  child: IconButton(
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (_) => const MyAboutDialog(),
+                      );
+                    },
+                    icon: const Icon(CupertinoIcons.rocket),
                   ),
                 ),
               ),
