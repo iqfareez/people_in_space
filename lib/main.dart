@@ -3,9 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'views/home.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -19,7 +17,7 @@ class MyApp extends StatelessWidget {
         fontFamily: GoogleFonts.firaSans().fontFamily,
         useMaterial3: true,
       ),
-      darkTheme: ThemeData.dark(),
+      darkTheme: ThemeData.dark(useMaterial3: true),
       themeMode: ThemeMode.system,
       home: const Home(),
     );
