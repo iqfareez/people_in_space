@@ -1,13 +1,21 @@
-[![Flutter Web](https://github.com/iqfareez/people_in_space/actions/workflows/flutter_web.yml/badge.svg)](https://github.com/iqfareez/people_in_space/actions/workflows/flutter_web.yml)
+![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white)
 
 # People in Space
 
-An app for viewing the current astronauts in the space right now. Just for fun project :smile:
+An app for viewing the current astronauts in space right now. Just for fun project :smile:
 
 Inspired by:
 
 - https://www.howmanypeopleareinspacerightnow.com/
 - https://whoisinspace.com/
+
+## Getting started
+
+- Prepare Flutter on your local machine. [Learn more](https://docs.flutter.dev/get-started/install).
+- Clone this repository.
+- Run `flutter pub get`
+- Run `flutter devices` to check available devices. This project is configured for Web & Android
+- Run `flutter run`.
 
 ## API
 
@@ -22,6 +30,8 @@ https://astros-api.herokuapp.com (Combination of **OpenNotify API** and **Bing I
 Or download apk from [Releases](https://github.com/iqfareez/people_in_space/releases) page.
 
 ### Web
+
+[![Flutter Web](https://github.com/iqfareez/people_in_space/actions/workflows/flutter_web.yml/badge.svg)](https://github.com/iqfareez/people_in_space/actions/workflows/flutter_web.yml)
 
 https://iqfareez.github.io/people_in_space
 
