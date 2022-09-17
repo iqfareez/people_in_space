@@ -17,7 +17,15 @@ class MyApp extends StatelessWidget {
         fontFamily: GoogleFonts.firaSans().fontFamily,
         useMaterial3: true,
       ),
-      darkTheme: ThemeData.dark(useMaterial3: true),
+      darkTheme: ThemeData.dark().copyWith(
+        useMaterial3: true,
+        textTheme: ThemeData.dark().textTheme.apply(
+              fontFamily: GoogleFonts.firaSans().fontFamily,
+            ),
+        primaryTextTheme: ThemeData.dark().textTheme.apply(
+              fontFamily: GoogleFonts.firaSans().fontFamily,
+            ),
+      ),
       themeMode: ThemeMode.system,
       home: const Home(),
     );

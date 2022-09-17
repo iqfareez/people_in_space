@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -59,24 +57,21 @@ class _HomeState extends State<Home> {
                             'assets/tartila-freepik-space-pattern.jpg'),
                       ),
                     ),
-                    child: BackdropFilter(
-                      filter: ImageFilter.blur(sigmaX: 3.6, sigmaY: 3.6),
-                      child: Center(
-                        child: FutureBuilder(
-                          future: _astrosFuture,
-                          builder:
-                              (context, AsyncSnapshot<AstrosModel> snapshot) {
-                            if (snapshot.hasData) {
-                              return Text(
-                                '${snapshot.data!.number} people in space',
-                                style: const TextStyle(
-                                    color: Colors.white, fontSize: 28),
-                              );
-                            } else {
-                              return const CircularProgressIndicator();
-                            }
-                          },
-                        ),
+                    child: Center(
+                      child: FutureBuilder(
+                        future: _astrosFuture,
+                        builder:
+                            (context, AsyncSnapshot<AstrosModel> snapshot) {
+                          if (snapshot.hasData) {
+                            return Text(
+                              '${snapshot.data!.number} people in space',
+                              style: const TextStyle(
+                                  color: Colors.white, fontSize: 30),
+                            );
+                          } else {
+                            return const CircularProgressIndicator();
+                          }
+                        },
                       ),
                     ),
                   ),
