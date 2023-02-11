@@ -1,4 +1,5 @@
 ![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white)
+[![Codemagic build status](https://api.codemagic.io/apps/63e746d0c8797c2850060be3/63e746d0c8797c2850060be2/status_badge.svg)](https://codemagic.io/apps/63e746d0c8797c2850060be3/63e746d0c8797c2850060be2/latest_build)
 
 # People in Space
 
