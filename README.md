@@ -15,7 +15,7 @@ Inspired by:
 - Clone this repository.
 - Run `flutter pub get`
 - Run `flutter devices` to check available devices. This project is configured for Web & Android
-- Run `flutter run`. (To run in GitHub Codespace, run `flutter run -d web-server --web-port=8080)
+- Run `flutter run`. (To run in GitHub Codespace, run `flutter run -d web-server --web-port=8080 --web-hostname=0.0.0.0`)
 
 ## API
 
