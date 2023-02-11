@@ -15,11 +15,11 @@ Inspired by:
 - Clone this repository.
 - Run `flutter pub get`
 - Run `flutter devices` to check available devices. This project is configured for Web & Android
-- Run `flutter run`.
+- Run `flutter run`. (To run in GitHub Codespace, run `flutter run -d web-server --web-port=8080)
 
 ## API
 
-https://astros-api.herokuapp.com (Combination of **OpenNotify API** and **Bing Image Search API**). Learn more on its [repository](https://github.com/iqfareez/astros-api).
+https://astros.iqfareez.com/ (Combination of **OpenNotify API** and **Bing Image Search API**). Learn more on its [repository](https://github.com/iqfareez/astros-api).
 
 ## Releases
 
