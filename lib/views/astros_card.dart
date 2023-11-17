@@ -75,13 +75,14 @@ class AstrosCard extends StatelessWidget {
                 ),
               ),
             ),
-            TextButton(
+            TextButton.icon(
               onPressed: () {
                 launchUrl(
                     Uri.https('www.google.com', 'search', {'q': people.name}),
                     mode: LaunchMode.externalApplication);
               },
-              child: const Text('Find out more...'),
+              icon: const Icon(Icons.search, size: 18),
+              label: const Text('Find out more...'),
             ),
           ],
         ),
