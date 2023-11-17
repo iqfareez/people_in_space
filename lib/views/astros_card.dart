@@ -5,7 +5,7 @@ import '../Networking/astros_model.dart';
 import 'image_viewer.dart';
 
 class AstrosCard extends StatelessWidget {
-  const AstrosCard({Key? key, required this.people}) : super(key: key);
+  const AstrosCard({super.key, required this.people});
 
   final People people;
 

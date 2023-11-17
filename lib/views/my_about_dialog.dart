@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MyAboutDialog extends StatelessWidget {
-  const MyAboutDialog({Key? key}) : super(key: key);
+  const MyAboutDialog({super.key});
 
   @override
   Widget build(BuildContext context) {

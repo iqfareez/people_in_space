@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ImageViewer extends StatelessWidget {
-  const ImageViewer({Key? key, required this.name, required this.imageSrc})
-      : super(key: key);
+  const ImageViewer({super.key, required this.name, required this.imageSrc});
 
   final String imageSrc;
   final String name;
