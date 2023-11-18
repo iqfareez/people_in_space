@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class ImageViewer extends StatefulWidget {
@@ -53,6 +54,8 @@ class _ImageViewerState extends State<ImageViewer>
   }
 
   void _onInteractionEnd(ScaleEndDetails details) {
+    // If on web, stay the zoom position
+    if (kIsWeb) return;
     _animateResetInitialize();
   }
 
@@ -78,6 +81,7 @@ class _ImageViewerState extends State<ImageViewer>
         title: Text(widget.name),
       ),
       body: InteractiveViewer(
+        panAxis: PanAxis.aligned,
         transformationController: _transformationController,
         onInteractionStart: _onInteractionStart,
         onInteractionEnd: _onInteractionEnd,
