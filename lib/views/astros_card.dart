@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../Networking/astros_model.dart';
 import 'image_viewer.dart';
@@ -74,15 +73,6 @@ class AstrosCard extends StatelessWidget {
                   ],
                 ),
               ),
-            ),
-            TextButton.icon(
-              onPressed: () {
-                launchUrl(
-                    Uri.https('www.google.com', 'search', {'q': people.name}),
-                    mode: LaunchMode.externalApplication);
-              },
-              icon: const Icon(Icons.search, size: 18),
-              label: const Text('Find out more...'),
             ),
           ],
         ),

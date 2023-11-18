@@ -83,15 +83,17 @@ class _HomeState extends State<Home> {
                   future: _astrosFuture,
                   builder: (context, AsyncSnapshot<AstrosModel> snapshot) {
                     if (snapshot.hasData) {
-                      return GridView.extent(
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        // crossAxisCount: crossAxisCount(),
-                        childAspectRatio: 4 / 6,
-                        maxCrossAxisExtent: 300,
-                        children: snapshot.data!.people!
-                            .map((e) => AstrosCard(people: e))
-                            .toList(),
+                      return SelectionArea(
+                        child: GridView.extent(
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          // crossAxisCount: crossAxisCount(),
+                          childAspectRatio: 4 / 5,
+                          maxCrossAxisExtent: 300,
+                          children: snapshot.data!.people!
+                              .map((e) => AstrosCard(people: e))
+                              .toList(),
+                        ),
                       );
                     } else {
                       return const Center(
