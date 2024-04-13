@@ -65,7 +65,14 @@ class _HomeState extends State<Home> {
                             (context, AsyncSnapshot<AstrosModel> snapshot) {
                           if (snapshot.hasData) {
                             return Text(
-                              '${snapshot.data!.number} people in space',
+                              // why ignore? Sebab bila buat interpolation, vscode takleh
+                              // properly format syntax
+                              // ignore: prefer_interpolation_to_compose_strings
+                              '${snapshot.data!.number}' +
+                                  switch (snapshot.data!.number) {
+                                    1 => ' people in space',
+                                    _ => ' peoples in space',
+                                  },
                               style: const TextStyle(
                                   color: Colors.white, fontSize: 30),
                             );
