@@ -76041,9 +76041,11 @@ p===$&&A.a()
 s=t.k4
 return A.apo(r,A.ak4(!0,A.apv(A.um(A.b([new A.cp(B.AS,A.amR(q,A.pb(r,A.mn(A.anZ(new A.acK(),p,s),r,r),B.w,r,r,B.xO,150,r,r,1/0)),r),new A.cp(B.kN,A.anZ(new A.acL(),p,s),r),new A.cp(B.AQ,A.ajP(A.ajq(r,B.BY,new A.acM(a),r,r),0.65),r)],t.F),B.e6,B.ch,B.ig),r),!0))}}
 A.acK.prototype={
-$2(a,b){var s=b.b
-if(s!=null)return A.r1(A.h(s.b)+" people in space",null,B.NC)
-else return B.z6},
+$2(a,b){var s,r=b.b
+if(r!=null){r=r.b
+$label0$0:{if(1===r){s=" people in space"
+break $label0$0}s=" peoples in space"
+break $label0$0}return A.r1(A.h(r)+s,null,B.NC)}else return B.z6},
 $S:136}
 A.acL.prototype={
 $2(a,b){var s,r,q=b.b
