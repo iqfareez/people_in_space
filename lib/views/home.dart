@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../Networking/astros_model.dart';
 import '../Networking/fetch_data.dart';
@@ -96,8 +97,15 @@ class _HomeState extends State<Home> {
                         ),
                       );
                     } else {
-                      return const Center(
-                        child: SingleChildScrollView(),
+                      return GridView.extent(
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        // crossAxisCount: crossAxisCount(),
+                        childAspectRatio: 4 / 5,
+                        maxCrossAxisExtent: 300,
+                        children: [
+                          for (int i = 0; i < 6; i++) const _LoaderShimmer()
+                        ],
                       );
                     }
                   },
@@ -120,6 +128,37 @@ class _HomeState extends State<Home> {
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Widget to show when data is laoding, we try to make the design (padding, size etc) same
+/// as AstroCard
+class _LoaderShimmer extends StatelessWidget {
+  const _LoaderShimmer();
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(4.0),
+      child: Shimmer.fromColors(
+        baseColor: switch (Theme.of(context).brightness) {
+          Brightness.light => Colors.grey[300]!,
+          Brightness.dark => Colors.grey[800]!,
+        },
+        highlightColor: switch (Theme.of(context).brightness) {
+          Brightness.light => Colors.white,
+          Brightness.dark => Colors.grey,
+        },
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(16),
+            color: Colors.grey[300],
+          ),
+          // height: 100,
+          // width: 100,
         ),
       ),
     );
