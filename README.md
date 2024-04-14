@@ -1,7 +1,11 @@
 ![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white)
-[![Codemagic build status](https://api.codemagic.io/apps/63e746d0c8797c2850060be3/63e746d0c8797c2850060be2/status_badge.svg)](https://codemagic.io/apps/63e746d0c8797c2850060be3/63e746d0c8797c2850060be2/latest_build)
 
 # People in Space
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/iqfareez/people_in_space/assets/60868965/b424b3bf-de70-4401-bd3e-33606a401c6a">
+  <img alt="People In Space screenshots" src="https://github.com/iqfareez/people_in_space/assets/60868965/6ddc0f71-9eee-40e3-adb5-94520f430180">
+</picture>
 
 An app for viewing the current astronauts in space right now. Just for fun project :smile:
 
