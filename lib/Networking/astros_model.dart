@@ -15,9 +15,9 @@ class AstrosModel {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    if (people != null)
-      // ignore: curly_braces_in_flow_control_structures
+    if (people != null) {
       data["people"] = people?.map((e) => e.toJson()).toList();
+    }
     data["number"] = number;
     data["message"] = message;
     return data;
