@@ -24,7 +24,7 @@ Inspired by:
 
 ## API
 
-https://astros.iqfareez.com/ (Combination of **OpenNotify API** and **Bing Image Search API**). Learn more on its [repository](https://github.com/iqfareez/astros-api).
+Combination of **OpenNotify API** and **Bing Image Search API**. Learn more [here](https://github.com/iqfareez/astros-api).
 
 ## Releases
 
