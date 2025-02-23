@@ -20,7 +20,7 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
-    _astrosFuture = FetchData.getAstros();
+    _astrosFuture = fetchAstros();
   }
 
   int crossAxisCount() {
@@ -88,7 +88,6 @@ class _HomeState extends State<Home> {
                         child: GridView.extent(
                           physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
-                          // crossAxisCount: crossAxisCount(),
                           childAspectRatio: 4 / 5,
                           maxCrossAxisExtent: 300,
                           children: snapshot.data!.people!
@@ -100,7 +99,6 @@ class _HomeState extends State<Home> {
                       return GridView.extent(
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
-                        // crossAxisCount: crossAxisCount(),
                         childAspectRatio: 4 / 5,
                         maxCrossAxisExtent: 300,
                         children: [
