@@ -25,10 +25,9 @@ jobs:
       - name: Build for Web
         run: |
           flutter pub get
-          flutter build web
+          flutter build web --base-href="/people_in_space/"
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: build/web # The folder the action should deploy.
-
