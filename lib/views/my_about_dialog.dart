@@ -12,7 +12,7 @@ class MyAboutDialog extends StatelessWidget {
       children: [
         const SimpleDialogOption(
           child: Text(
-              'This app shows the number of people in space right now. It uses the Open Notify API with Bing Images to get the data.'),
+              'This app shows the number of people in space right now. It uses the Open Notify API with Bing Images to retrieve the data.'),
         ),
         SimpleDialogOption(
           child: const Text('Made with Flutter by Muhammad Fareez'),
