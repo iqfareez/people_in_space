@@ -1,20 +1,33 @@
-name: Deploy Flutter Web
+name: Deploy Flutter Web App to GitHub Pages
+
 on:
   push:
-    branches:
-      - master
+    branches: ["master"]
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
   build:
-    name: Build Web
+    name: Build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v7.0.0
 
-      - name: Flutter action
+      - name: Set up Flutter
         id: flutter-action
         uses: subosito/flutter-action@v2
         with:
-          channel: "stable"
+          channel: stable
 
       - name: Flutter info
         run: |
@@ -22,12 +35,26 @@ jobs:
           echo version=${{ steps.flutter-action.outputs.version }} >> $GITHUB_STEP_SUMMARY
           echo architecture=${{ steps.flutter-action.outputs.architecture }} >> $GITHUB_STEP_SUMMARY
 
-      - name: Build for Web
-        run: |
-          flutter pub get
-          flutter build web --base-href="/people_in_space/"
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v6.0.0
 
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@v4
+      - name: Build with Flutter
+        run: flutter build web --release --base-href /people_in_space/
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v5.0.0
         with:
-          folder: build/web # The folder the action should deploy.
+          path: build/web/
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: build
+    runs-on: ubuntu-slim
+    name: Deploy
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5.0.0
